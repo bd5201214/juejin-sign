@@ -1,0 +1,26 @@
+{
+  "name": "juejing-auto-mining",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {},
+  "description": "掘金每日自动签到，自动抽奖",
+  "main": "./src/index",
+  "scripts": {
+    "start": "node ./src/index",
+    "test:mining": "node ./test/test-mining",
+    "test:juejin": "node ./test/test-juejin"
+  },
+  "keywords": [
+    "掘金",
+    "签到",
+    "抽奖",
+    "自动"
+  ],
+  "author": "huangqihong",
+  "license": "MIT"
+}
