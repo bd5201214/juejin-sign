@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: 掘金自动签到和挖矿
+on:
+  push:
+  schedule:
+    # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 18表示北京时间早上2点
+    - cron: '0 18 * * *'
+jobs:
+  check_in:
+    runs-on: ubuntu-latest
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@master
+
+
+      # 使用 node:14
+      - name: 使用 Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      # npm install
+      - name: npm install
+        run: |
+          npm install
+        env:
+          CI: true
+
+      # 运行脚本
+      - name: 运行脚本
+        run: |
+          COOKIE='${{ secrets.COOKIE }}' TOKEN='${{ secrets.TOKEN }}' SERVERID='${{ secrets.SERVERID }}' npm start
+        env:
+          CI: true
